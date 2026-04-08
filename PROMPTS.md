@@ -82,7 +82,7 @@ Requisito:
 **Resultado obtenido**:
 
 *Ejer 1:*
-def crear_saludo(nombre: str) -> str:
+```def crear_saludo(nombre: str) -> str:
     """
     Genera un mensaje de saludo personalizado.
 
@@ -93,9 +93,9 @@ def crear_saludo(nombre: str) -> str:
         str: Un mensaje de saludo con el formato "Hola, [nombre]!".
     """
     return f"Hola, {nombre}!"
-
+```
 *Ejer 2:* 
-def suma_enteros(a: int, b: int) -> int:
+```def suma_enteros(a: int, b: int) -> int:
     """
     Retorna la suma de dos enteros.
 
@@ -107,7 +107,7 @@ def suma_enteros(a: int, b: int) -> int:
         int: La suma de a y b.
     """
     return a + b
-
+```
 *Ejer 3:*
 Receta paso a paso
 Definir la función: Usamos def es_mayor_de_edad(edad: int) -> bool:. Esto indica que la función recibe un entero (int) y va a devolver un valor booleano (bool, es decir, True o False).
@@ -116,6 +116,7 @@ Documentar: Agregamos el docstring explicando la lógica, qué parámetro recibe
 
 Evaluar y retornar: En lugar de hacer un bloque if/else tradicional (que ocuparía 4 líneas), podemos devolver directamente el resultado de la evaluación lógica. La expresión edad >= 18 se evalúa sola y da como resultado True o False, por lo que podemos escribir simplemente return edad >= 18.
 
+```python
 def es_mayor_de_edad(edad: int) -> bool:
     """
     Determina si una persona es mayor de edad (18 años o más).
@@ -127,7 +128,7 @@ def es_mayor_de_edad(edad: int) -> bool:
         bool: True si la edad es mayor o igual a 18, False en caso contrario.
     """
     return edad >= 18
-
+```
 *Ejer 4*
 Receta paso a paso
 Definir la función: Escribimos `def tipo_de_dato(valor) -> str:`. En este caso, no le ponemos una pista de tipo a valor porque, como dice tu requisito, puede recibir cualquier tipo de dato.
@@ -139,6 +140,7 @@ Obtener el tipo: Usamos la función integrada type(valor). Si a esa función le 
 Extraer solo el nombre (opcional pero más limpio): Aunque podríamos devolver str(type(valor)), si queremos devolver estrictamente el nombre puro `(ej: "int", "str", "list")`, podemos acceder al atributo `__name__` de la clase. Por lo tanto, usaremos type(valor).`__name__.`
 
 Retornar el resultado: Anteponemos return a la expresión del paso 4.
+```python
 def tipo_de_dato(valor) -> str:
     """
     Retorna el nombre del tipo de dato del valor recibido.
@@ -150,7 +152,7 @@ def tipo_de_dato(valor) -> str:
         str: El nombre del tipo de dato (por ejemplo, 'int', 'str', 'bool').
     """
     return type(valor).__name__
-
+```
 *Ejer 5*
 Receta paso a paso
 Definir la función: Usamos `def convertir_a_float(valor: str) -> float:`. Las pistas de tipo indican que la función espera recibir una cadena de texto (str) y va a devolver un número con decimales (float).
@@ -234,8 +236,6 @@ def es_bisiesto(anio: int) -> bool:
 
 **¿Lo usaste tal cual o lo modificaste**
  > Usado tal cual. 
-
-
 
 ### 3 - listas.py
 
@@ -330,15 +330,53 @@ def filtrar_por_valor(d: dict, minimo: int) -> dict:
 ### 5 - loops.py
 
 **Herramienta**: 
-
+`Gemini AI`
 **Prompt usado**:
+Patron: Refinamiento de preguntas
+> P1: ¿Cómo puedo usar loops en Python para generar secuencias numéricas (como contar hasta N o tablas de multiplicar) y devolver listas?
+> P2: ¿Cuál es la forma más eficiente de usar loops para sumar los dígitos de un número entero o evaluar si un número es primo iterando sus divisores?
+> P3: En el caso de la secuencia de Fibonacci iterativa, ¿cómo manejo los casos base si me piden generar los primeros N números y N es muy chico (ej: 0 o 1)?
+> P4: Teniendo en cuenta mis preguntas anteriores, mostrame la implementación óptima en Python para estas cinco funciones usando loops y rangos: `contar_hasta`, `tabla_multiplicar`, `suma_digitos`, `es_primo` y `fibonacci`.
 > 
 
 **Resultado obtenido**:
+(El asistente fue refinando la lógica en cada paso, optando por comprensiones de listas cuando era más limpio, iterando sobre la raíz cuadrada para optimizar la validación de números primos, y manejando correctamente los casos de N pequeños en la sucesión de Fibonacci antes de mostrar el código definitivo).
 
+```python
+def contar_hasta(n: int) -> list:
+    return list(range(1, n + 1))
+
+def tabla_multiplicar(n: int) -> list:
+    return [n * i for i in range(1, 11)]
+
+def suma_digitos(n: int) -> int:
+    suma = 0
+    for digito in str(n):
+        suma += int(digito)
+    return suma
+
+def es_primo(n: int) -> bool:
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def fibonacci(n: int) -> list:
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    
+    resultado = [0, 1]
+    for _ in range(2, n):
+        resultado.append(resultado[-1] + resultado[-2])
+    return resultado
+```
 
 **¿Lo usaste tal cual o lo modificaste?**
-
+> Tal cual
 
 ---
 
