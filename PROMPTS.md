@@ -284,22 +284,46 @@ def aplanar_lista(lista: list) -> list:
 ```
 
 **¿Lo usaste tal cual o lo modificaste?**
-
+Tal cual
 
 ---
 
 ### 4 - diccionarios.py
 
-**Herramienta**: 
 
+**Herramienta**: 
+`Gemini AI`
 **Prompt usado**:
+> Generá 5 ejemplos distintos de cómo se comportan estas operaciones de diccionarios en Python:
+> 1. Contar frecuencias de palabras en textos con mayúsculas y minúsculas mezcladas.
+> 2. Invertir diccionarios (intercambiar claves por valores).
+> 3. Fusionar dos diccionarios donde hay claves que se pisan.
+> 4. Filtrar diccionarios reteniendo solo valores numéricos mayores o iguales a un límite.
+>
+> Para cada ejemplo, mostrámelo con entradas y salidas esperadas. Luego, extraé una regla general o enfoque eficiente para implementar en Python las funciones `contar_palabras`, `invertir_diccionario`, `merge_diccionarios` y `filtrar_por_valor`. Generá el código final con docstrings basado en esos patrones.
 > 
 
 **Resultado obtenido**:
+```python
+def contar_palabras(texto: str) -> dict:
+    palabras = texto.lower().split()
+    frecuencias = {}
+    for p in palabras:
+        frecuencias[p] = frecuencias.get(p, 0) + 1
+    return frecuencias
 
+def invertir_diccionario(d: dict) -> dict:
+    return {valor: clave for clave, valor in d.items()}
+
+def merge_diccionarios(d1: dict, d2: dict) -> dict:
+    return d1 | d2
+
+def filtrar_por_valor(d: dict, minimo: int) -> dict:
+    return {clave: valor for clave, valor in d.items() if valor >= minimo}
+```
 
 **¿Lo usaste tal cual o lo modificaste?**
-
+>Usado tal cual. 
 
 ---
 
