@@ -426,15 +426,43 @@ def reducir(lista: list, func, inicial):
 ### 7 - operaciones.py
 
 **Herramienta**: 
-
+`Gemini AI`
 **Prompt usado**:
-> 
+Patrón: Enfoque alternativo
+> Tengo que implementar 4 funciones para manipular strings en Python: `es_palindromo`, `capitalizar_palabras`, `contar_vocales` y `caesar_cipher`.
+> Para el cifrado César (`caesar_cipher`), compará 2 enfoques:
+> A) Usar dos strings con el alfabeto (`"abcdef..."`) y buscar los índices con `.find()`.
+> B) Usar las funciones nativas `ord()` y `chr()` para trabajar directamente con los valores ASCII.
+> Elegí el enfoque que tenga mejor performance, justifica tu elección, y escribí el código final de las 4 funciones con sus respectivos docstrings.
 
 **Resultado obtenido**:
+(El asistente comparó las opciones, señalando que los punteros son buenos para algoritmos clásicos pero innecesariamente complejos acá, y recomendó el uso de slicing `[::-1]` por ser la forma más idiomática, directa y rápida en Python. Luego generó el código usando `.lower()` y `.replace(" ", "")` para la limpieza previa. También comparó los enfoques y determinó que usar `ord()` y `chr()` es más eficiente porque evita las búsquedas lineales de `.find()` en cada iteración, aprovechando operaciones matemáticas directas. Luego, completó el resto de las funciones utilizando métodos nativos de string como `.title()` y generadores para contar vocales).
 
+```python
+def es_palindromo(texto: str) -> bool:
+    texto_limpio = texto.lower().replace(" ", "")
+    return texto_limpio == texto_limpio[::-1]
+def capitalizar_palabras(texto: str) -> str:
+    return texto.title()
+
+def contar_vocales(texto: str) -> int:
+    vocales = "aeiou"
+    return sum(1 for letra in texto.lower() if letra in vocales)
+
+def caesar_cipher(texto: str, desplazamiento: int) -> str:
+    resultado = ""
+    for char in texto:
+        if char.isalpha():
+            base = 65 if char.isupper() else 97
+            nuevo_char = chr((ord(char) - base + desplazamiento) % 26 + base)
+            resultado += nuevo_char
+        else:
+            resultado += char
+    return resultado
+```
 
 **¿Lo usaste tal cual o lo modificaste?**
-
+>Tal cual.
 
 ---
 
