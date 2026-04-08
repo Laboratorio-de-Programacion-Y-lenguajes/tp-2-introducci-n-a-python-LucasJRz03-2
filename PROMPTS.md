@@ -383,15 +383,43 @@ def fibonacci(n: int) -> list:
 ### 6 - funciones.py
 
 **Herramienta**: 
-
+`Gemini AI`
 **Prompt usado**:
+> Necesito implementar 4 funciones de orden superior y programación funcional en Python para un TP: `aplicar_funcion`, `componer`, `memoizar` y `reducir`.
+> Antes de escribir el código, quiero comparar enfoques para `memoizar` y `reducir`:
+> 1. Para `memoizar`, analizá pros/contras de usar el decorador `lru_cache` de functools vs. crear un closure manual con un diccionario `cache = {}`.
+> 2. Para `reducir`, analizá pros/contras de hacerlo con recursión vs. un bucle `for` tradicional.
+> 
+> Analizá performance, simplicidad y restricciones del TP (no usar `functools.reduce`). Luego recomendá un enfoque para cada uno y escribí el código final con docstrings para las 4 funciones.
 > 
 
 **Resultado obtenido**:
+(El asistente reflexionó indicando que, aunque `lru_cache` es más robusto para memoización, construir un closure manual es mejor para aprender el concepto en un TP. Para la reducción, recomendó el bucle iterativo sobre la recursión para evitar el límite de profundidad y mejorar la legibilidad. Luego generó el código usando lambdas y comprensiones de listas donde era oportuno).
 
+```python
+def aplicar_funcion(lista: list, func) -> list:
+    return [func(elemento) for elemento in lista]
+
+def componer(f, g):
+    return lambda x: f(g(x))
+
+def memoizar(func):
+    cache = {}
+    def wrapper(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]
+    return wrapper
+
+def reducir(lista: list, func, inicial):
+    acumulador = inicial
+    for elemento in lista:
+        acumulador = func(acumulador, elemento)
+    return acumulador
+```
 
 **¿Lo usaste tal cual o lo modificaste?**
-
+> Tal cual
 
 ---
 
