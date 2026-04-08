@@ -36,7 +36,7 @@ Explicá qué cambios hiciste y por qué (o por qué no cambiaste nada).
 
 **Prompt usado**:
  **Ejer 1:**
-  Patrón: Paso a paso.
+  Patrón Paso a paso.
  `crear_saludo(nombre: str) -> str:`
   > Requisitos:
   >1.Recibir un nombre como parámetro.
@@ -82,7 +82,7 @@ Requisito:
 **Resultado obtenido**:
 
 *Ejer 1:*
-```def crear_saludo(nombre: str) -> str:
+def crear_saludo(nombre: str) -> str:
     """
     Genera un mensaje de saludo personalizado.
 
@@ -92,7 +92,7 @@ Requisito:
     Returns:
         str: Un mensaje de saludo con el formato "Hola, [nombre]!".
     """
-    return f"Hola, {nombre}!"```
+    return f"Hola, {nombre}!"
 
 *Ejer 2:* 
 def suma_enteros(a: int, b: int) -> int:
@@ -153,7 +153,7 @@ def tipo_de_dato(valor) -> str:
 
 *Ejer 5*
 Receta paso a paso
-Definir la función: Usamos def convertir_a_float(valor: str) -> float:. Las pistas de tipo indican que la función espera recibir una cadena de texto (str) y va a devolver un número con decimales (float).
+Definir la función: Usamos `def convertir_a_float(valor: str) -> float:`. Las pistas de tipo indican que la función espera recibir una cadena de texto (str) y va a devolver un número con decimales (float).
 
 Documentar: Abrimos comillas triples y escribimos el docstring explicando qué hace, qué recibe y qué retorna.
 
@@ -171,15 +171,67 @@ Retornar el resultado: Anteponemos la palabra reservada return para devolver el 
 ### 2 - condicionales.py
 
 **Herramienta**: 
+ `Gemini AI`
 
-**Prompt usado**:
+**Prompt usado** 
+**Ejer 1 al 4 (Agrupados**
+Interaccion invertida 
+> **Usuario:** Quiero implementar cuatro funciones con condicionales en Python: `clasificar_numero`, `mayor_de_tres`, `clasificar_nota` y `es_bisiesto`. Antes de escribir el código, haceme 3 preguntas para confirmar enfoques y prioridades lógicas.
+>
+> **IA:** ¡Perfecto! Antes de codear, confirmame esto:
+> 1. Para `mayor_de_tres`, ¿puedo usar la función nativa `max()` o preferís que use condicionales `if/elif/else` para practicar la lógica?
+> 2. Para `clasificar_nota`, el orden de las evaluaciones importa mucho. ¿Estás de acuerdo con evaluar de mayor a menor (ej: primero >= 9, luego >= 7) para que las notas no se pisen?
+> 3. Para `es_bisiesto`, ¿preferís una sola línea con operadores lógicos (`and`, `or`) o una estructura `if/elif/else` clara paso a paso?
+>
+> **Usuario:** 
+> 1. Usá condicionales puros (if/elif/else), nada de max().
+> 2. Sí, evaluá de mayor a menor para evitar bugs.
+> 3. Usá if/elif/else claro, evaluando primero la regla de los 400 años que es la más estricta.
+
 > 
 
 **Resultado obtenido**:
+(Se generaron las 4 funciones utilizando estrictamente estructuras de control de flujo `if/elif/else`, documentadas con docstrings).
 
+```python
+def clasificar_numero(n: int) -> str:
+    if n > 0:
+        return "positivo"
+    elif n < 0:
+        return "negativo"
+    else:
+        return "cero"
+
+def mayor_de_tres(a: int, b: int, c: int) -> int:
+    if a >= b and a >= c:
+        return a
+    elif b >= a and b >= c:
+        return b
+    else:
+        return c
+
+def clasificar_nota(nota: float) -> str:
+    if nota >= 9:
+        return "Sobresaliente"
+    elif nota >= 7:
+        return "Bueno"
+    elif nota >= 6:
+        return "Aprobado"
+    else:
+        return "Desaprobado"
+
+def es_bisiesto(anio: int) -> bool:
+    if anio % 400 == 0:
+        return True
+    elif anio % 100 == 0:
+        return False
+    elif anio % 4 == 0:
+        return True
+    else:
+        return False```
 
 **¿Lo usaste tal cual o lo modificaste?**
-
+ > Usado tal cual. 
 
 ---
 
