@@ -174,7 +174,7 @@ Retornar el resultado: Anteponemos la palabra reservada return para devolver el 
  `Gemini AI`
 
 **Prompt usado** 
-**Ejer 1 al 4 (Agrupados**
+**Ejer 1 al 4 (Agrupados)**
 Interaccion invertida 
 > **Usuario:** Quiero implementar cuatro funciones con condicionales en Python: `clasificar_numero`, `mayor_de_tres`, `clasificar_nota` y `es_bisiesto`. Antes de escribir el código, haceme 3 preguntas para confirmar enfoques y prioridades lógicas.
 >
@@ -194,6 +194,7 @@ Interaccion invertida
 (Se generaron las 4 funciones utilizando estrictamente estructuras de control de flujo `if/elif/else`, documentadas con docstrings).
 
 ```python
+
 def clasificar_numero(n: int) -> str:
     if n > 0:
         return "positivo"
@@ -228,22 +229,59 @@ def es_bisiesto(anio: int) -> bool:
     elif anio % 4 == 0:
         return True
     else:
-        return False```
+        return False
+```
 
-**¿Lo usaste tal cual o lo modificaste?**
+**¿Lo usaste tal cual o lo modificaste**
  > Usado tal cual. 
 
----
+
 
 ### 3 - listas.py
 
 **Herramienta**: 
-
+ `Gemini AI`
 **Prompt usado**:
+> Estoy resolviendo un ejercicio de manipulación de listas en Python con estas 5 funciones:
+> 1. `suma_lista`: devuelve la suma total.
+> 2. `filtrar_pares`: devuelve solo los pares.
+> 3. `invertir_lista`: invierte sin modificar la original.
+> 4. `eliminar_duplicados`: borra repetidos manteniendo el orden.
+> 5. `aplanar_lista`: convierte lista de listas en una sola.
+> 
+> ¿Podés revisar mi lógica como verificador cognitivo?
+> - Enumerá casos borde que debería testear (ej: listas vacías).
+> - Decime errores típicos (ej: mutar la lista original al invertir).
+> - Proponé tests con entradas y salidas esperadas.
+> - Una vez verificado esto, escribí el código final validando estas reglas.
 > 
 
 **Resultado obtenido**:
+(El asistente validó casos borde como listas vacías, advirtió sobre no usar métodos destructivos como `.reverse()`, y luego generó el código final usando `sum()`, comprensión de listas y slicing `[::-1]` para asegurar la inmutabilidad).
 
+```python
+def suma_lista(numeros: list) -> int | float:
+    return sum(numeros)
+
+def filtrar_pares(numeros: list) -> list:
+    return [n for n in numeros if n % 2 == 0]
+
+def invertir_lista(lista: list) -> list:
+    return lista[::-1]
+
+def eliminar_duplicados(lista: list) -> list:
+    resultado = []
+    for elemento in lista:
+        if elemento not in resultado:
+            resultado.append(elemento)
+    return resultado
+
+def aplanar_lista(lista: list) -> list:
+    resultado = []
+    for sublista in lista:
+        resultado.extend(sublista)
+    return resultado
+```
 
 **¿Lo usaste tal cual o lo modificaste?**
 
